@@ -1,0 +1,80 @@
+﻿@model OtoHaber.MvcWebUI.Areas.Admin.Models.YazarIndexViewModel
+
+@{
+    ViewBag.Title = "Yazarlar Index";
+}
+
+<div class="row" style="margin-top:50px;">
+
+    @if (TempData["Mesaj"] != null)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>@TempData["Mesaj"]</strong>
+            </div>
+        </div>
+    }
+
+    <div class="col-md-12">
+        <a href="@Url.Action("Ekle","Yazar",new { area="Admin"})" class="btn btn-success">Yazar Ekle</a>
+        <hr />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Yazarlar
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Eposta</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var yazar in Model.Yazarlar)
+                        {
+                            <tr>
+                                <td>@yazar.Id</td>
+                                <td>@yazar.YazarAdi</td>
+                                <td>@yazar.YazarSoyadi</td>
+                                <td>@yazar.Eposta</td>
+                                <td>
+                                    <a href="@Url.Action("Duzenle","Yazar",new { area="Admin", id=yazar.Id})" class="btn btn-primary">Düzenle</a>
+                                    <a data-yazaradsoyad="@yazar.YazarAdi @yazar.YazarSoyadi" data-yazarid="@yazar.Id" class="btn btn-danger btnYazarSil">Sil</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on('click', '.btnYazarSil', function () {
+                let yazarId = $(this).data('yazarid');
+                let yazarAdSoyad = $(this).data('yazaradsoyad');
+                const result = confirm(yazarAdSoyad +' yazarını silmek istediğinize emin misiniz ?');
+                if (result) {
+                    $.post('/Admin/Yazar/Sil', { yazarId: yazarId }, function (result) {
+                        alert(result);
+                        location.reload();
+                    })
+                }
+            })
+        });
+    </script>
+}
+
+

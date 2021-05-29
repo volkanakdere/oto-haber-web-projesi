@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace OtoHaber.DataAccess.Concrete
 {
-    public class KullaniciDal
+    public class KullaniciDal : BaseEntityDal<Kullanici>
     {
+        
         public List<KullaniciDetayDto> GetirKullaniciDetayDtoList()
         {
             using (var context = new OtoHaberContext())
@@ -49,44 +50,6 @@ namespace OtoHaber.DataAccess.Concrete
 
                 return query.FirstOrDefault();
             }
-        }
-
-        public Kullanici GetirKullaniciById(int kullaniciId)
-        {
-            using (var context = new OtoHaberContext())
-            {
-                return context.Kullanicilar.SingleOrDefault(x => x.Id == kullaniciId);
-            }
-        }
-
-        public void Ekle(Kullanici kullanici)
-        {
-            using (var context = new OtoHaberContext())
-            {
-                var guncellenecekKullanici = context.Entry(kullanici);
-                guncellenecekKullanici.State = System.Data.Entity.EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-        public void Guncelle(Kullanici kullanici)
-        {
-            using (var context = new OtoHaberContext())
-            {
-                var guncellenecekKullanici = context.Entry(kullanici);
-                guncellenecekKullanici.State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
-
-        public void Sil(Kullanici kullanici)
-        {
-            using (var context = new OtoHaberContext())
-            {
-                var guncellenecekKullanici = context.Entry(kullanici);
-                guncellenecekKullanici.State = System.Data.Entity.EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
+        }        
     }
 }

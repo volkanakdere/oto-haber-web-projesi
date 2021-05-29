@@ -130,9 +130,13 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KullaniciController.cs" />
+    <Compile Include="Areas\Admin\Controllers\YazarController.cs" />
     <Compile Include="Areas\Admin\Models\KullaniciDuzenleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KullaniciEkleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KullaniciIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\YazarDuzenleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\YazarEkleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\YazarIndexViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -157,6 +161,9 @@
     <Content Include="Areas\Admin\Views\Kullanici\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Kullanici\Ekle.cshtml" />
     <Content Include="Areas\Admin\Views\Kullanici\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\Yazar\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Yazar\Ekle.cshtml" />
+    <Content Include="Areas\Admin\Views\Yazar\Duzenle.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

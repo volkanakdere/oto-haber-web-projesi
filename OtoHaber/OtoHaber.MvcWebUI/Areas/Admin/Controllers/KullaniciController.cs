@@ -69,7 +69,7 @@ namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult Sil(int kullaniciId)
         {
-            var kullanici = kullaniciDal.GetirKullaniciById(kullaniciId);
+            var kullanici = kullaniciDal.GetirById(kullaniciId);
             kullaniciDal.Sil(kullanici);            
             return Json("Kullanıcı başarıyla silindi");
         }
