@@ -26,7 +26,7 @@ namespace OtoHaber.DataAccess.Concrete
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.AddFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

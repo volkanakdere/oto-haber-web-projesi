@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\KullaniciDal.cs" />
     <Compile Include="Concrete\Mappings\HaberResimMap.cs" />
     <Compile Include="Concrete\Mappings\KullaniciMap.cs" />
     <Compile Include="Concrete\Mappings\RolMap.cs" />

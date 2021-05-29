@@ -1,0 +1,56 @@
+﻿@model OtoHaber.MvcWebUI.Areas.Admin.Models.KullaniciDuzenleViewModel
+
+@{
+    ViewBag.Title = "Düzenle";
+}
+
+<div class="row" style="margin-top:50px;">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Kullanıcı Düzenleme Formu
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Duzenle", "Kullanici", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.HiddenFor(x => x.Kullanici.Id)
+                    @Html.HiddenFor(x => x.Kullanici.Sifre)
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Kullanici.Adi, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Kullanici.Adi, new { @class = "form-control", placeholder = "Adi giriniz." })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Kullanici.Soyadi, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Kullanici.Soyadi, new { @class = "form-control", placeholder = "Soyad giriniz." })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Kullanici.Eposta, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Kullanici.Eposta, new { @class = "form-control", placeholder = "Eposta giriniz." })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Kullanici.RolId, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.DropDownListFor(x => x.Kullanici.RolId, Model.Roller, new { @class = "form-control", placeholder = "Eposta giriniz." })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Kaydet</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
