@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\BaseEntityDal.cs" />
+    <Compile Include="Concrete\HaberDal.cs" />
+    <Compile Include="Concrete\HaberResimDal.cs" />
     <Compile Include="Concrete\KategoriDal.cs" />
     <Compile Include="Concrete\KullaniciDal.cs" />
     <Compile Include="Concrete\Mappings\HaberResimMap.cs" />
