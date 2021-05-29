@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\Mappings\HaberResimMap.cs" />
+    <Compile Include="Concrete\Mappings\KullaniciMap.cs" />
+    <Compile Include="Concrete\Mappings\RolMap.cs" />
+    <Compile Include="Concrete\Mappings\YazarMap.cs" />
+    <Compile Include="Concrete\Mappings\YorumMap.cs" />
+    <Compile Include="Concrete\Mappings\KategoriMap.cs" />
     <Compile Include="Concrete\Mappings\HaberMap.cs" />
     <Compile Include="Concrete\OtoHaberContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
