@@ -129,14 +129,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
     <Compile Include="Areas\Admin\Controllers\KullaniciController.cs" />
     <Compile Include="Areas\Admin\Controllers\YazarController.cs" />
+    <Compile Include="Areas\Admin\Controllers\YorumController.cs" />
+    <Compile Include="Areas\Admin\Models\KategoriDuzenleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\KategoriEkleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\KategoriIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KullaniciDuzenleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KullaniciEkleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KullaniciIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\YazarDuzenleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\YazarEkleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\YazarIndexViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\YorumIndexViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,6 +170,10 @@
     <Content Include="Areas\Admin\Views\Yazar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Yazar\Ekle.cshtml" />
     <Content Include="Areas\Admin\Views\Yazar\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\Kategori\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Kategori\Ekle.cshtml" />
+    <Content Include="Areas\Admin\Views\Kategori\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\Yorum\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

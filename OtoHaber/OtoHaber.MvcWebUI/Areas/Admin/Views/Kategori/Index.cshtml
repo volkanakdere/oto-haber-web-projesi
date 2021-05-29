@@ -1,0 +1,78 @@
+﻿@model OtoHaber.MvcWebUI.Areas.Admin.Models.KategoriIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin-top:50px;">
+
+    @if (TempData["Mesaj"] != null)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>@TempData["Mesaj"]</strong>
+            </div>
+        </div>
+    }
+
+    <div class="col-md-12">
+        <a href="@Url.Action("Ekle","Kategori",new { area="Admin"})" class="btn btn-success">Kategori Ekle</a>
+        <hr />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Kategoriler
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Kategori Adı</th>                            
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var kategori in Model.Kategoriler)
+                        {
+                            <tr>
+                                <td>@kategori.Id</td>                               
+                                <td>@kategori.KategoriAdi</td>
+                                <td>
+                                    <a href="@Url.Action("Duzenle","Kategori",new { area="Admin", id=kategori.Id})" class="btn btn-primary">Düzenle</a>
+                                    <a data-kategoriadi="@kategori.KategoriAdi" data-kategoriid="@kategori.Id" class="btn btn-danger btnKategoriSil">Sil</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on('click', '.btnKategoriSil', function () {
+                let kategoriId = $(this).data('kategoriid');
+                let kategoriAdi = $(this).data('kategoriadi');
+                const result = confirm(kategoriAdi +' kategorisini silmek istediğinize emin misiniz ?');
+                if (result) {
+                    $.post('/Admin/Kategori/Sil', { kategoriId: kategoriId }, function (result) {
+                        alert(result);
+                        location.reload();
+                    })
+                }
+            })
+        });
+    </script>
+}
+
+
+
+

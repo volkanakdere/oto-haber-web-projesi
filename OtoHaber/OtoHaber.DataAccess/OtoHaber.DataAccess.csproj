@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\BaseEntityDal.cs" />
+    <Compile Include="Concrete\KategoriDal.cs" />
     <Compile Include="Concrete\KullaniciDal.cs" />
     <Compile Include="Concrete\Mappings\HaberResimMap.cs" />
     <Compile Include="Concrete\Mappings\KullaniciMap.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Concrete\Mappings\HaberMap.cs" />
     <Compile Include="Concrete\OtoHaberContext.cs" />
     <Compile Include="Concrete\YazarDal.cs" />
+    <Compile Include="Concrete\YorumDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

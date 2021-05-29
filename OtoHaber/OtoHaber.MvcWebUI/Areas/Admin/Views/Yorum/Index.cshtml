@@ -1,0 +1,105 @@
+﻿@model OtoHaber.MvcWebUI.Areas.Admin.Models.YorumIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin-top:50px;">
+
+    @if (TempData["Mesaj"] != null)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>@TempData["Mesaj"]</strong>
+            </div>
+        </div>
+    }
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Yorumlar
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Kullanıcı Ad Soyad</th>
+                            <th>Yorum Metni</th>
+                            <th>Onay Durumu</th>
+                            <th>Tarihi</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var yorumDetayDto in Model.YorumDetayDtoList.OrderBy(x=>x.OnaylandiMi))
+                        {
+                            <tr>
+                                <td>@yorumDetayDto.Id</td>
+                                <td>@yorumDetayDto.KullaniciAdSoyad</td>
+                                <td>@yorumDetayDto.YorumMetni</td>
+                                <td>
+                                    @if (yorumDetayDto.OnaylandiMi)
+                                    {
+                                        <span class="label label-success">Onaylandı</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-danger">Onay Bekliyor</span>
+                                    }
+                                </td>
+                                <td>@yorumDetayDto.YorumTarihi.ToShortDateString()</td>
+                                <td>
+                                    <button data-yorumid="@yorumDetayDto.Id" class="btn btn-success btnYorumOnayla">Onayla</button>
+                                    <button data-yorumid="@yorumDetayDto.Id" class="btn btn-danger btnYorumSil">Sil</button>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on('click', '.btnYorumOnayla', function () {
+                let yorumId = $(this).data('yorumid');
+                const result = confirm(yorumId + ' idli yorumunun yayınlanmasını onaylamak istediğinize emin misiniz ?');
+                if (result) {
+                    $.post('/Admin/Yorum/Onayla', { yorumId: yorumId }, function (result) {
+                        alert(result);
+                        location.reload();
+                    })
+                }
+            })
+        });
+
+        $(function () {
+            $(document).on('click', '.btnYorumSil', function () {
+                let yorumId = $(this).data('yorumid');
+                const result = confirm(yorumId + ' idli yorumu silmek istediğinize emin misiniz ?');
+                if (result) {
+                    $.post('/Admin/Yorum/Sil', { yorumId: yorumId }, function (result) {
+                        alert(result);
+                        location.reload();
+                    })
+                }
+            })
+        });
+    </script>
+}
+
+
+
+
+
+
