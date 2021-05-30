@@ -16,7 +16,7 @@
     }
 
     <div class="col-md-12">
-        <a href="@Url.Action("Ekle","Haber",new { area="Admin"})" class="btn btn-success">Yeni Makale Ekle</a>
+        <a href="@Url.Action("Ekle","Haber",new { area="Admin"})" class="btn btn-success">Yeni Haber Ekle</a>
         <hr />
         <h2>Haberler</h2>
     </div>
@@ -36,7 +36,7 @@
                     <hr />
                     <p>
                         <a href="@Url.Action("Duzenle","Haber",new { id=haberDto.Id,area="Admin"})" class="btn btn-primary" role="button">Düzenle</a>
-                        <a href="#" class="btn btn-danger" role="button">Sil</a>
+                        <button data-haberbaslik="@haberDto.Baslik" data-haberid="@haberDto.Id" class="btn btn-danger btnHaberSil">Sil</button>
                     </p>
                 </div>
             </div>
@@ -45,5 +45,23 @@
 
 
 </div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).on('click', '.btnHaberSil', function () {
+                let haberId = $(this).data('haberid');
+                let haberBaslik = $(this).data('haberbaslik');
+                const result = confirm(haberBaslik +' Haberini silmek istediğinize emin misiniz ?');
+                if (result) {
+                    $.post('/Admin/Haber/Sil', { haberId: haberId }, function (result) {
+                        alert(result);
+                        location.reload();
+                    })
+                }
+            })
+        });
+    </script>
+}
 
 

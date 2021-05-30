@@ -138,5 +138,13 @@ namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
             TempData["Mesaj"] = $" Haber başarıyla güncellendi.";
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public JsonResult Sil(int haberId)
+        {
+            var haber = haberDal.GetirById(haberId);
+            haberDal.Sil(haber);
+            return Json("Haber başarıyla silindi");
+        }
     }
 }
