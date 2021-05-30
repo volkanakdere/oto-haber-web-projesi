@@ -1,17 +1,35 @@
-﻿@model OtoHaber.MvcWebUI.Areas.Admin.Models.HaberEkleViewModel
+﻿@model OtoHaber.MvcWebUI.Areas.Admin.Models.HaberDuzenleViewModel
 @{
-    ViewBag.Title = "Ekle";
+    ViewBag.Title = "Duzenle";
 }
 
 <div class="row" style="margin-top:50px;">
-    <div class="col-md-12">
+
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="@Url.Content("~/Uploads/HaberResimler/"+Model.HaberResim.ResimDosyaYolu)" alt="@Model.Haber.Baslik">
+            <div class="caption">      
+                <hr />
+                <p>
+                    <button class="btn btn-primary" id="btnResimSec">Resim Seç</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Haber Ekleme Formu
+                Haber Düzenleme Formu
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("Ekle", "Haber", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
-                {                    
+                @using (Html.BeginForm("Duzenle", "Haber", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(x => x.Haber.Id)
+                    @Html.HiddenFor(x => x.Haber.Tarih)
+                    @Html.HiddenFor(x => x.HaberResim.Id)
+                    @Html.HiddenFor(x => x.HaberResim.HaberId)
+                    @Html.HiddenFor(x => x.HaberResim.ResimDosyaYolu)
                     <div class="form-group">
                         @Html.LabelFor(x => x.Haber.YazarId, "Yazar", new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-10">
@@ -47,7 +65,7 @@
                     <div class="form-group">
                         @Html.LabelFor(x => x.HaberIcerik, new { @class = "col-sm-2 control-label" })
                         <div class="col-sm-10">
-                            @Html.TextAreaFor(x => x.HaberIcerik, new { @class = "form-control" })
+                            @Html.TextAreaFor(x => x.HaberIcerik, new { @class = "form-control", value = Model.Haber.Icerik })
                         </div>
                     </div>
 
@@ -72,7 +90,15 @@
         $(function () {
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
-            CKEDITOR.replace('HaberIcerik')            
+            CKEDITOR.replace('HaberIcerik')
+            
+            $('#btnResimSec').click(function () {
+                $('#Resim').trigger('click');  
+            });
+
+           
         })
     </script>
 }
+
+

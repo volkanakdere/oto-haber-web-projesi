@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\KullaniciController.cs" />
     <Compile Include="Areas\Admin\Controllers\YazarController.cs" />
     <Compile Include="Areas\Admin\Controllers\YorumController.cs" />
+    <Compile Include="Areas\Admin\Models\HaberDuzenleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HaberEkleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HaberIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\KategoriDuzenleViewModel.cs" />
@@ -2925,6 +2926,7 @@
     <Content Include="Plugins\ckeditor\skins\kama\readme.md" />
     <Content Include="Plugins\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Plugins\ckeditor\skins\moono\readme.md" />
+    <Content Include="Areas\Admin\Views\Haber\Duzenle.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
