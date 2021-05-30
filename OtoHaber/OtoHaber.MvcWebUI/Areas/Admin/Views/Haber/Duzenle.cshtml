@@ -42,7 +42,7 @@
                             @Html.DropDownListFor(x => x.Haber.KategoriId, Model.Kategoriler, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
                         @Html.LabelFor(x => x.Resim, "Haber Resmi", new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
                             @Html.TextBoxFor(x => x.Resim, new { type = "file", accept = "image/*" })
