@@ -9,6 +9,7 @@ namespace OtoHaber.Entities.DTOs
     public class HaberDetayDto
     {
         public int Id { get; set; }
+        public int KategoriId { get; set; }
         public string Baslik { get; set; }
         public string HaberOzeti { get; set; }
         public DateTime Tarih { get; set; }

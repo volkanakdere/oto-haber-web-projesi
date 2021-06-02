@@ -1,0 +1,59 @@
+﻿@model OtoHaber.MvcWebUI.Models.HaberDetayViewModel
+@{
+    ViewBag.Title = "HaberDetay";
+}
+
+
+
+<div class="row">
+
+    <div class="col-sm-8 col-md-offset-2 blog-main">
+        <div class="blog-header">
+            <h1 class="blog-title">@Model.Haber.Baslik</h1>
+            <p class="lead blog-description">
+                @Model.Haber.HaberOzeti
+            </p>
+        </div>
+        <div class="thumbnail">
+            <img src="@Url.Content("~/Uploads/HaberResimler/"+Model.HaberResim.ResimDosyaYolu)" alt="@Model.Haber.Baslik">
+        </div>
+        <div class="blog-post">
+            @Html.Raw(Model.Haber.Icerik)
+            <hr />
+            <p class="lead text-muted">@Model.Haber.Tarih.ToLongDateString() by @Model.HaberYazar.YazarAdi @Model.HaberYazar.YazarSoyadi</p>
+
+        </div><!-- /.blog-main -->
+        <hr />
+    </div>
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Yorumlar</h2>
+            </div>
+            <div class="panel-body">
+                <form action="@Url.Action("YorumYap","Home")" method="post">
+                    <input type="hidden" name="haberId" value="@Model.Haber.Id"/>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4" placeholder="yorum yaz" name="yorumMetni"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">Gönder</button>
+                </form>
+                @foreach (var yorum in Model.HaberYorumlar)
+                {
+                    <div class="media">
+                        <div class="media-left">
+                            @yorum.YorumTarihi.ToShortDateString()
+                        </div>
+                        <div class="media-body">
+                            <p>@yorum.YorumMetni</p>
+                            <span class="text-muted">@yorum.KullaniciAdSoyad</span>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.row -->

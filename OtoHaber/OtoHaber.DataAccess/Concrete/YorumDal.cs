@@ -30,5 +30,27 @@ namespace OtoHaber.DataAccess.Concrete
                 return query.ToList();
             }
         }
+
+        public List<YorumDetayDto> GetirYorumDetayDtoListByHaberId(int haberId)
+        {
+            using (var context = new OtoHaberContext())
+            {
+                var query = from yorumlar in context.Yorumlar
+                            join kullanicilar in context.Kullanicilar
+                            on yorumlar.KullaniciId equals kullanicilar.Id
+                            where yorumlar.HaberId == haberId && yorumlar.OnaylandiMi
+                            select new YorumDetayDto
+                            {
+                                Id = yorumlar.Id,
+                                KullaniciAdSoyad = kullanicilar.Adi + " " + kullanicilar.Soyadi,
+                                KullaniciId = yorumlar.KullaniciId,
+                                OnaylandiMi = yorumlar.OnaylandiMi,
+                                YorumMetni = yorumlar.YorumMetni,
+                                YorumTarihi = yorumlar.YorumTarihi
+                            };
+
+                return query.ToList();
+            }
+        }
     }
 }
