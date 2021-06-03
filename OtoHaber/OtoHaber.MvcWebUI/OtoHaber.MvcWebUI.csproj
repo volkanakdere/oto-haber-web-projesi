@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuthUyeOlViewModel.cs" />
     <Compile Include="Models\HaberDetayViewModel.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\Identity.cs" />
@@ -2957,6 +2958,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\HaberDetay.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\UyeOl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,9 +28,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     @{
                         var currentUser = Context.User;
-                        if (currentUser.Identity.IsAuthenticated==false)
+                        if (currentUser.Identity.IsAuthenticated == false)
                         {
                             <li><a href="@Url.Action("Login","Auth")">Giriş yap</a></li>
+                            <li><a href="@Url.Action("UyeOl","Auth")">Üye ol</a></li>
                         }
                         else
                         {
