@@ -27,6 +27,22 @@
                     <li><a href="/Admin/Yorum/Index">Yorumlar</a></li>
                     <li><a href="/Admin/Haber/Index">Haberler</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @{
+                        var currentUser = Context.User;
+                        if (currentUser.Identity.IsAuthenticated == true && currentUser.IsInRole("Admin"))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@currentUser.Identity.Name <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Logout","Auth",new { area=""})">Çıkış yap</a></li>
+                                    <li><a href="@Url.Action("Index","Home",new { area=""})">Anasayfa</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
+
+                </ul>
             </div>
         </div>
     </div>

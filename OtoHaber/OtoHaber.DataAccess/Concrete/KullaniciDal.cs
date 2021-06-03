@@ -50,6 +50,30 @@ namespace OtoHaber.DataAccess.Concrete
 
                 return query.FirstOrDefault();
             }
-        }        
+        }
+
+        public Kullanici GetirByEposta(string eposta)
+        {
+            using (var context = new OtoHaberContext())
+            {
+                return context.Kullanicilar.FirstOrDefault(x => x.Eposta == eposta);
+            }
+        }
+
+        public Kullanici GetirByEpostaVeParola(string eposta, string sifre)
+        {
+            using (var context = new OtoHaberContext())
+            {
+                return context.Kullanicilar.FirstOrDefault(x => x.Eposta == eposta && x.Sifre == sifre);
+            }
+        }
+
+        public string GetirKullaniciRolByKullanici(Kullanici kullanici)
+        {
+            using (var context = new OtoHaberContext())
+            {
+                return context.Roller.FirstOrDefault(x => x.Id == kullanici.RolId).RolAdi;
+            }
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace OtoHaber.MvcWebUI.Controllers
         HaberDal haberDal = new HaberDal();
         HaberResimDal haberResimDal = new HaberResimDal();
         YorumDal yorumDal = new YorumDal();
+        KullaniciDal kullaniciDal = new KullaniciDal();
 
         [HttpGet]
         public ActionResult Index(int? id)
@@ -53,10 +54,11 @@ namespace OtoHaber.MvcWebUI.Controllers
                 HaberId = haberId,
                 YorumMetni= yorumMetni,
                 YorumTarihi = DateTime.Now,
-                KullaniciId = 1
+                KullaniciId = kullaniciDal.GetirByEposta(User.Identity.Name).Id
             };
             yorumDal.Ekle(yorum);
             return Redirect("/Home/HaberDetay/" + haberId);
         }
+
     }
 }

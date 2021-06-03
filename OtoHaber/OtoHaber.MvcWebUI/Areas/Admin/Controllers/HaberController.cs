@@ -1,6 +1,7 @@
 ﻿using OtoHaber.DataAccess.Concrete;
 using OtoHaber.Entities.Domains;
 using OtoHaber.MvcWebUI.Areas.Admin.Models;
+using OtoHaber.MvcWebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
 {
+    [CustomAuthorizeFilter(Roles ="Admin")]
     public class HaberController : Controller
     {
         KategoriDal kategoriDal = new KategoriDal();

@@ -50,6 +50,7 @@
     <Compile Include="Domains\Yorum.cs" />
     <Compile Include="DTOs\HaberDetayDto.cs" />
     <Compile Include="DTOs\KullaniciDetayDto.cs" />
+    <Compile Include="DTOs\LoginDto.cs" />
     <Compile Include="DTOs\YorumDetayDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

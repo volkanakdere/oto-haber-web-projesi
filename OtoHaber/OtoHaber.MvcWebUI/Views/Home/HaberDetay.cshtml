@@ -32,13 +32,30 @@
                 <h2 class="panel-title">Yorumlar</h2>
             </div>
             <div class="panel-body">
-                <form action="@Url.Action("YorumYap","Home")" method="post">
-                    <input type="hidden" name="haberId" value="@Model.Haber.Id"/>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="4" placeholder="yorum yaz" name="yorumMetni"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-info">Gönder</button>
-                </form>
+
+                @{
+                    var currentUser = Context.User;
+                    if (currentUser.Identity.IsAuthenticated)
+                    {
+                        <form action="@Url.Action("YorumYap","Home")" method="post">
+                            <input type="hidden" name="haberId" value="@Model.Haber.Id" />
+                            <div class="form-group">
+                                <textarea class="form-control" rows="4" placeholder="yorum yaz" name="yorumMetni"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-info">Gönder</button>
+                        </form>                       
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            Yorum yazmak için lütfen
+                            <a href="@Url.Action("Login","Auth")">Giriş yap</a>
+                        </div>
+                    }
+                }
+
+
+
                 @foreach (var yorum in Model.HaberYorumlar)
                 {
                     <div class="media">

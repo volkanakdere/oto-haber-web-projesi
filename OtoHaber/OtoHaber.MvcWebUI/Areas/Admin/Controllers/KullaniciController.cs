@@ -1,5 +1,6 @@
 ﻿using OtoHaber.DataAccess.Concrete;
 using OtoHaber.MvcWebUI.Areas.Admin.Models;
+using OtoHaber.MvcWebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
 {
+    [CustomAuthorizeFilter(Roles = "Admin")]
     public class KullaniciController : Controller
     {
         OtoHaberContext context = new OtoHaberContext();
