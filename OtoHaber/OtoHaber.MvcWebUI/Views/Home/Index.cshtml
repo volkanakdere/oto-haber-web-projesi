@@ -1,10 +1,10 @@
 ﻿@model OtoHaber.MvcWebUI.Models.HomeIndexViewModel
 @{
     ViewBag.Title = "Home Page";
-    var aktifKategori = ViewContext.RouteData.Values["id"] == null ? 0: Convert.ToInt32(ViewContext.RouteData.Values["id"]);
+    var aktifKategori = ViewContext.RouteData.Values["id"] == null ? 0 : Convert.ToInt32(ViewContext.RouteData.Values["id"]);
 }
 
-<div class="row jumbotron" style="background-color:white;">
+<div class="row jumbotron" style="background-color:beige;">
     <div class="col-md-4">
         <div class="list-group">
             <div class="list-group-item">
@@ -23,50 +23,83 @@
     <div class="col-md-8">
         @if (Model.HaberDetayDtos.Count > 0)
         {
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    @for (int i = 0; i < Model.HaberDetayDtos.Count; i++)
-                    {
-                        <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(@i==0 ? "active" :"")"></li>
-                    }
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    @foreach (var haberDetayDto in Model.HaberDetayDtos)
-                    {
-                        var indexNumber = Model.HaberDetayDtos.IndexOf(haberDetayDto);
-                        var activeClass = "";
-                        if (indexNumber == 0)
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        @foreach (var haber in Model.HaberDetayDtos)
                         {
-                            activeClass = "active";
-                        }
-                        <div class="item @activeClass">
-                            <a href="@Url.Action("HaberDetay","Home",new { id = haberDetayDto.Id})">
-                                <img src="@Url.Content("~/Uploads/HaberResimler/"+haberDetayDto.HaberResmi)" alt="@haberDetayDto.Baslik">
-                            </a>
-                            <div class="carousel-caption">
-                                @haberDetayDto.Baslik
+                            <div class="col-md-12 haber-panel" id="haberid-@haber.Id">
+                                <div class="thumbnail">
+                                    <img src="@Url.Content("~/Uploads/HaberResimler/"+haber.HaberResmi)" alt="@haber.Baslik">
+                                    <div class="caption">
+                                        <h3>@haber.Baslik</h3>
+                                        <p class="text-muted">
+                                            @(haber.HaberOzeti.Length > 150 ? haber.HaberOzeti.Substring(0,100)+"...":haber.HaberOzeti)
+                                        </p>
+                                        <p><a href="@Url.Action("HaberDetay","Home",new { id=haber.Id})" class="btn btn-primary" role="button">Devamını oku</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    }
-
+                        }
+                    </div>
                 </div>
+                <div class="panel-footer">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            @*<li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>*@
+                            @for (int i = 0; i < Model.HaberDetayDtos.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <li class="active btn-haber-goster" data-haberid="haberid-@Model.HaberDetayDtos[i].Id">
+                                        <a href="javascript:void(0)">@(i+1)</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="btn-haber-goster" data-haberid="haberid-@Model.HaberDetayDtos[i].Id">
+                                        <a href="javascript:void(0)">@(i+1)</a>
+                                    </li>
+                                }
+                            }
 
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                            @*<li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>*@
+                        </ul>
+                    </nav>
+                </div>
             </div>
+
         }
     </div>
 </div>
+
+@section scripts {
+    <script>
+
+        $(document).on('click', '.btn-haber-goster', function () {
+            var haberId = $(this).data('haberid');
+            $('.btn-haber-goster').removeClass('active');
+            $(this).addClass('active');
+            $('.haber-panel').hide('slow');
+            $(`#${haberId}`).show('slow');
+        });
+        $(function () {
+            var haberId = $('.btn-haber-goster.active').data('haberid');
+            $('.haber-panel').hide();
+            $(`#${haberId}`).show('slow');
+        });
+    </script>
+}
 
 
 
