@@ -18,6 +18,7 @@ namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
         YazarDal yazarDal = new YazarDal();
         HaberDal haberDal = new HaberDal();
         HaberResimDal haberResimDal = new HaberResimDal();
+        YorumDal yorumDal = new YorumDal();
 
         [HttpGet]
         public ActionResult Index()
@@ -145,6 +146,21 @@ namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
         public JsonResult Sil(int haberId)
         {
             var haber = haberDal.GetirById(haberId);
+            var haberResimPath = haberResimDal.GetirByHaberId(haberId).ResimDosyaYolu;
+
+            FileInfo fileInfo = new FileInfo(Path.Combine(Server.MapPath("~/Uploads/HaberResimler"),haberResimPath));
+            if (fileInfo.Exists)
+            {
+                fileInfo.Delete();
+                haberResimDal.Sil(haberResimDal.GetirByHaberId(haberId));
+            }
+
+            var yorumlar = yorumDal.GetirTumunu();
+            foreach (var yorum in yorumlar)
+            {
+                yorumDal.Sil(yorum);
+            }
+            
             haberDal.Sil(haber);
             return Json("Haber başarıyla silindi");
         }
