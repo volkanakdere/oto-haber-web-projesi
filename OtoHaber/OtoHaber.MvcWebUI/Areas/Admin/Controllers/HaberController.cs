@@ -24,7 +24,7 @@ namespace OtoHaber.MvcWebUI.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = new HaberIndexViewModel();
-            model.HaberDetayDtoList = haberDal.GetirHaberDetayDtoList();
+            model.HaberDetayDtoList = haberDal.GetirHaberDetayDtoList().OrderByDescending(x=>x.Tarih).ToList();
             return View(model);
         }
 
